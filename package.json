@@ -1,15 +1,14 @@
 {
-  "name": "music-player",
+  "name": "live-radio",
   "version": "1.0.0",
-  "description": "A simple music player that resumes playback from the current live time.",
-  "main": "server.js",
+  "description": "A simple live radio-like server using Express.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.18.2"
   }
 }
