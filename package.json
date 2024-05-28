@@ -1,0 +1,15 @@
+{
+  "name": "music-player",
+  "version": "1.0.0",
+  "description": "A simple music player that resumes playback from the current live time.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
