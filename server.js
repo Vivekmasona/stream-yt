@@ -4,7 +4,7 @@ const port = 3000;
 
 // Assume the song started at a specific time
 const songStartTime = new Date();  // Song starts when the server starts
-const songDuration = 1800; // Song duration in seconds (e.g., 30 minutes)
+const songDuration = 86400; // Song duration in seconds (e.g., 24 hours)
 
 app.get('/current_time', (req, res) => {
     const currentTime = new Date();
