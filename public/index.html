@@ -4,27 +4,30 @@
     <title>Music Player</title>
 </head>
 <body>
-    <audio id="audioPlayer" controls></audio>
     <script>
         const songUrl = 'https://vivekfy-server.000webhostapp.com/play/deno?url=https://youtu.be/Nl2rqIL3Rpo'; // Replace with your song URL
 
-        async function fetchCurrentTime() {
-            const response = await fetch('/current_time');
-            const data = await response.json();
-            return data.time;
+        async function fetchSongInfo() {
+            // Simulating fetching song info from the server
+            // In this example, it returns a static value, but you should replace it with your actual implementation
+            return { url: songUrl, currentTime: 0 }; // Return an object with the song URL and current time
         }
 
-        async function initPlayer() {
-            const audioPlayer = document.getElementById('audioPlayer');
-            audioPlayer.src = songUrl;
-
-            const currentTime = await fetchCurrentTime();
-            audioPlayer.currentTime = currentTime;
-
-            audioPlayer.play();
+        async function displaySongInfo() {
+            const songInfo = await fetchSongInfo();
+            // Instead of playing the audio, you can log or process the response JSON data
+            console.log("Song URL:", songInfo.url);
+            console.log("Current Time:", songInfo.currentTime);
+            // Or you can update the DOM to display the received data
+            // For example:
+            // const songUrlElement = document.getElementById('songUrl');
+            // songUrlElement.textContent = "Song URL: " + songInfo.url;
+            // const currentTimeElement = document.getElementById('currentTime');
+            // currentTimeElement.textContent = "Current Time: " + songInfo.currentTime;
         }
 
-        window.onload = initPlayer;
+        window.onload = displaySongInfo;
     </script>
 </body>
 </html>
+
