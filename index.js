@@ -17,7 +17,9 @@ app.post('/control', (req, res) => {
     if (action === 'play' || action === 'pause' || action === 'stop') {
         audioStatus = action;
     } else if (action === 'volume') {
-        volume = value;
+        if (value === 0 || value === 20 || value === 40 || value === 60 || value === 80 || value === 100) {
+            volume = value + '%';
+        }
     }
 
     res.json({ status: 'Button click received', action });
@@ -39,5 +41,6 @@ app.get('/current-url', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${
+    console.log(`Server is running on port ${PORT}`);
+});
 
