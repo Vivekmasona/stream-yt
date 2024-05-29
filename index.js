@@ -8,7 +8,7 @@ app.use(cors());
 
 let audioStatus = 'stop'; // Audio player ka initial status
 let audioUrl = ''; // Audio ka initial URL
-let volume = 100; // Initial volume
+let volume = '100%'; // Initial volume
 
 app.post('/control', (req, res) => {
     const { action, value } = req.body;
@@ -17,7 +17,7 @@ app.post('/control', (req, res) => {
     if (action === 'play' || action === 'pause' || action === 'stop') {
         audioStatus = action;
     } else if (action === 'volume') {
-        volume = value;
+        volume = value + '%';
     }
 
     res.json({ status: 'Button click received', action });
@@ -41,3 +41,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
