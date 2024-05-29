@@ -8,49 +8,37 @@ app.use(cors());
 
 let audioStatus = 'stop'; // Initial status of the audio player
 let audioUrl = ''; // Initial URL of the audio
-let audioVolume = 100; // Initial volume level (0 to 100)
+let volume = 100; // Initial volume
 
-// Endpoint to control play, pause, stop, and specific volume levels
 app.post('/control', (req, res) => {
-    const { action, volume } = req.body;
+    const { action, value } = req.body;
 
-    if (action) {
-        // Update the audioStatus based on the action received
-        if (action === 'play') {
-            audioStatus = 'play';
-        } else if (action === 'pause') {
-            audioStatus = 'pause';
-        } else if (action === 'stop') {
-            audioStatus = 'stop';
+    // Update the audioStatus or volume based on the action received
+    if (action === 'play') {
+        audioStatus = 'play';
+    } else if (action === 'pause') {
+        audioStatus = 'pause';
+    } else if (action === 'stop') {
+        audioStatus = 'stop';
+    } else if (action === 'volume') {
+        if (value === 0 || value === 20 || value === 40 || value === 60 || value === 80 || value === 100) {
+            volume = value;
         }
     }
 
-    if (volume !== undefined) {
-        // Update the audioVolume based on the volume received
-        const validVolumes = [0, 20, 40, 60, 80, 100];
-        if (validVolumes.includes(volume)) {
-            audioVolume = volume;
-        } else {
-            return res.status(400).json({ status: 'Invalid volume value' });
-        }
-    }
-
-    res.json({ status: 'Action received', action, volume: audioVolume });
+    res.json({ status: 'Button click received', action });
 });
 
-// Endpoint to get the current audio status
 app.get('/audio-status', (req, res) => {
-    res.json({ status: audioStatus });
+    res.json({ status: audioStatus, volume: volume });
 });
 
-// Endpoint to update the audio URL
 app.post('/update-url', (req, res) => {
     const { url } = req.body;
     audioUrl = url;
     res.json({ status: 'URL updated' });
 });
 
-// Endpoint to get the current audio URL
 app.get('/current-url', (req, res) => {
     res.json({ url: audioUrl });
 });
